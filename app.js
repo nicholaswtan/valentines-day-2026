@@ -41,7 +41,7 @@ const message_instance = new TypeIt(".revealed-message", {
 });
 
 const audioPool = [];
-const poolSize = 3; // Create multiple audio instances
+const poolSize = 6; // Create multiple audio instances
 
 function createAudioPool() {
   for (let i = 0; i < poolSize; i++) {
