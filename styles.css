@@ -52,6 +52,7 @@ body {
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
   transform-origin: center;
+  touch-action: manipulation;
 }
 
 .title {
