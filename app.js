@@ -8,11 +8,6 @@ const tomato_frames = [
   "assets/tomato-frames/tomato-7.PNG",
 ];
 
-const char_frames = [
-  "assets/char-heart-frames/char-heart-1.PNG",
-  "assets/char-heart-frames/char-heart-2.PNG",
-  "assets/char-heart-frames/char-heart-3.PNG",
-];
 let i = 0;
 let c_i = 0;
 
@@ -45,10 +40,16 @@ const message_instance = new TypeIt(".revealed-message", {
   },
 });
 
-function playSound(soundFile) {
-  const audio = new Audio(soundFile);
-  audio.currentTime = 0; // Rewind to the start
-  audio.play();
+const chompAudio = new Audio("assets/chomp.mp3");
+chompAudio.preload = "auto"; // hint to preload
+
+function playChomp() {
+  // restart immediately
+  chompAudio.pause();
+  chompAudio.currentTime = 0;
+
+  // play can fail until first user gesture; here it's called from click so it's fine
+  chompAudio.play().catch(() => {});
 }
 
 function render() {
@@ -73,7 +74,7 @@ function preload() {
     const im = new Image();
     im.src = src;
   });
-  const audio = new Audio("assets/chomp.mp3");
+  chompAudio.load();
 }
 
 function pop() {
@@ -83,8 +84,8 @@ function pop() {
 }
 
 img.addEventListener("click", () => {
-  playSound("assets/chomp.mp3");
   if (i < tomato_frames.length - 1) {
+    playChomp();
     i += 1;
     pop();
     render();
