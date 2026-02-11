@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charmato</title>
+    <link rel="icon" type="image/png" href="assets/tomato-favicon.png" sizes="32x32">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="card">
+      <h1 class="title">
+        Wow doesn't that tomato look <span class="ellipsis">delicious...</span>
+      </h1>
+
+      <img
+        id="tomato"
+        class="tomato"
+        alt="Tomato"
+        draggable="false"
+        src="assets/tomato-frames/tomato-1.PNG"
+        width="300"
+        height="300"
+      />
+
+      <h1 class="revealed-message"></h1>
+
+      <img
+        id="char"
+        class="char"
+        src="assets/char-hearts.png"
+        alt="..."
+        width="300"
+        height="300"
+      />
+
+      <p class="hint" id="hint"></p>
+    </main>
+  </body>
+</html>
