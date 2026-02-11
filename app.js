@@ -40,16 +40,26 @@ const message_instance = new TypeIt(".revealed-message", {
   },
 });
 
-const chompAudio = new Audio("assets/chomp.mp3");
-chompAudio.preload = "auto"; // hint to preload
+const audioPool = [];
+const poolSize = 3; // Create multiple audio instances
+
+function createAudioPool() {
+  for (let i = 0; i < poolSize; i++) {
+    const audio = new Audio("assets/chomp.mp3");
+    audio.preload = "auto"; // Ensure audio is preloaded
+    audioPool.push(audio);
+  }
+}
+
+let currentAudioIndex = 0;
 
 function playChomp() {
-  // restart immediately
-  chompAudio.pause();
-  chompAudio.currentTime = 0;
+  const audio = audioPool[currentAudioIndex];
+  audio.currentTime = 0;
+  audio.play().catch((e) => console.log("Audio play failed:", e));
 
-  // play can fail until first user gesture; here it's called from click so it's fine
-  chompAudio.play().catch(() => {});
+  // Cycle through the pool
+  currentAudioIndex = (currentAudioIndex + 1) % poolSize;
 }
 
 function render() {
@@ -74,7 +84,7 @@ function preload() {
     const im = new Image();
     im.src = src;
   });
-  chompAudio.load();
+  createAudioPool();
 }
 
 function pop() {
