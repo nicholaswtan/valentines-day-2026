@@ -52,7 +52,6 @@ function playSound(soundFile) {
 }
 
 function render() {
-  playSound("assets/chomp.mp3");
   img.src = tomato_frames[i];
   if (i === tomato_frames.length - 1) {
     title.classList.add("fade-out");
@@ -74,6 +73,7 @@ function preload() {
     const im = new Image();
     im.src = src;
   });
+  const audio = new Audio("assets/chomp.mp3");
 }
 
 function pop() {
@@ -83,6 +83,7 @@ function pop() {
 }
 
 img.addEventListener("click", () => {
+  playSound("assets/chomp.mp3");
   if (i < tomato_frames.length - 1) {
     i += 1;
     pop();
